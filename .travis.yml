@@ -13,8 +13,7 @@ addons:
       name: "funtimeerror/Contentify"
       description: "<Your project description here>"
     notification_email: basslingo@gmail.com
-    build_command_prepend: "php composer.phar update --no-suggest"
-    build_command: "php composer.phar install --no-suggest"
+    build_command: "--no-command --fs-capture-search ./"
     branch_pattern: coverity_scan
 
 before_install:
