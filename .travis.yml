@@ -1,8 +1,24 @@
+env:
+  global:
+   - secure: "bPXNdbfPD7OIv3pk/k2OoPsJU6lVMZmOGLOB+/PyZGMBdkX1+Sz4ag78g02JOYZr8RiqOUGKJnU6Nb9kgfBMWH5c0llcGpEJ097xkw8QxiPKhTJY6BM0OpYBTuuXVO2U1R9RvsCustxkSUUYHiQvrvWEtwkITom9FbQ9C2jIbTDjQLzW48lkkPSR7DU5qDQdtN88DXVFtZOGBBnrco0IApkdg/BgZjo2q8Rvsm+c1l31/ZUP0O2BoGKsBvWVYj3gh/sHSeAKjOZTumAZBpxznHSdPwkHcAOkFgtdiqto6j8Qdpmsuh5KIeCTpteKxjFWHBA8IHF+16lxT8A4c8oHbWJW5zzQe9GpF1t1RYUcBqPRDmBsyIb3iHqSlPFve4erLJIUyQ+n8f1N/fYPiNmKVuM1Wp5OxxlXTfZR3hWaNP2Yh+/sbVGPhV8qqcnsqrzm1rP2nAIY8fk+h3rIlpom9ivnlAZzjUv7hN1/T3lBXIM5OdHjVqK3BLClootH83alNgZzunZu4W0uHl4APwObi4meKQLiX1rOxzvP1+KKieuzvQbTV5AGOkoo9hDhydpKVv/n1OCB6ejw+cuYvteGM4p2aq7MAClEfp2ocI004YlgyzbncSyvGnT297D5dSUuUKmJafCtQ/1XJayAt+Vtvyx2IQJAyvvCqJUYK4tZAgM="
 dist: xenial
 language: php
 php:
   - '7.0'
   - '7.3'
+
+addons:
+  coverity_scan:
+    project:
+      name: "funtimeerror/Contentify"
+      description: "<Your project description here>"
+    notification_email: basslingo@gmail.com
+    build_command_prepend: "php composer.phar update --no-suggest"
+    build_command: "php composer.phar install --no-suggest"
+    branch_pattern: coverity_scan
+
+before_install:
+  - echo -n | openssl s_client -connect https://scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
   
 install:
   - php composer.phar update --no-suggest
